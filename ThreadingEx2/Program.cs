@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading;
 
 namespace FindSmallest
 {
@@ -6,6 +9,8 @@ namespace FindSmallest
     {
 
         private static readonly int[][] Data = new int[][]{
+
+            
             new[]{1,5,4,2}, 
             new[]{3,2,4,11,4},
             new[]{33,2,3,-1, 10},
@@ -31,13 +36,29 @@ namespace FindSmallest
             return smallestSoFar;
         }
 
+
+       
         static void Main()
         {
-            foreach (int[] data in Data)
+
+           
+            foreach (int[] d in Data)
             {
-                int smallest = FindSmallest(data);
-                Console.WriteLine("\t" + String.Join(", ", data) + "\n-> " + smallest);
+                Thread t1 = new Thread(() =>
+                {
+                    int smallest = FindSmallest(d);
+
+                    Console.WriteLine("\t" + String.Join(", ", d) + "\n-> " + smallest);
+                    
+                });
+                t1.Start();
+                
+
+
+
             }
+            
+            
         }
     }
 }
