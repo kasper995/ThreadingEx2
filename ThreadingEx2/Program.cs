@@ -5,13 +5,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ThreadingEx2;
 
 namespace FindSmallest
 {
     class Program
     {
 
-        private static readonly int[][] Data = new int[][]{
+        private static int[][] Data = new int[][]{
 
             
             new[]{1,5,4,2}, 
@@ -60,6 +61,11 @@ namespace FindSmallest
 
         static void Main()
         {
+
+            Generator gen = new Generator();
+            gen.generate(500, 500);
+            Data = gen.result;
+
             List<Task<int>> myList = new List<Task<int>>();
           
             foreach (int[] data in Data)
