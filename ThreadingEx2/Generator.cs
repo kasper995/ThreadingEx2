@@ -40,6 +40,7 @@ namespace ThreadingEx2
                         _result[i][j] = rnd.Next(MAXVALUE*2) - MAXVALUE;
                     });
                 }
+                Task.WaitAll();
             }
         }
     }
